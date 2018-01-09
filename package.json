@@ -1,0 +1,50 @@
+{
+  "name": "electron-svelte",
+  "version": "0.0.1",
+  "description": "An electron <> Svelte starter kit",
+  "repository": "https://github.com/sjones6/electron-svelte",
+  "bugs": {
+    "url": "https://github.com/sjones6/electron-svelte/issues"
+  },
+  "homepage": "https://github.com/sjones6/electron-svelte#readme",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "npm run test:unit",
+    "test:r": "npm run test:renderer",
+    "test:renderer": "karma start",
+    "test:m": "npm run test:main",
+    "test:main": "electron-mocha ./test/unit/main/**/*.js",
+    "predev": "node ./pack.js",
+    "dev": "electron .",
+    "pack": "webpack --config=./webpack.config.js",
+    "build": "NODE_ENV=production webpack --config=./webpack.config.js && electron-builder"
+  },
+  "keywords": [
+    "electron",
+    "svelte",
+    "boilerplate"
+  ],
+  "author": "sjones6",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.7.10",
+    "electron-mocha": "^5.0.0",
+    "karma-webpack": "^2.0.9",
+    "mocha": "^4.1.0",
+    "spectron": "^3.7.2",
+    "svelte": "^1.51.0",
+    "svelte-loader": "^2.3.3",
+    "webpack": "^3.10.0",
+    "webpack-karma-jasmine": "^1.0.4"
+  },
+  "dependencies": {
+    "electron-reload": "^1.2.2",
+    "mocha-webpack": "^1.0.1"
+  },
+  "build": {
+    "appId": "your.id",
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  }
+}
