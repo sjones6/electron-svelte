@@ -31,6 +31,7 @@
     "electron-mocha": "^5.0.0",
     "karma-webpack": "^2.0.9",
     "mocha": "^4.1.0",
+    "mocha-webpack": "^1.0.1",
     "spectron": "^3.7.2",
     "svelte": "^1.51.0",
     "svelte-loader": "^2.3.3",
@@ -38,8 +39,7 @@
     "webpack-karma-jasmine": "^1.0.4"
   },
   "dependencies": {
-    "electron-reload": "^1.2.2",
-    "mocha-webpack": "^1.0.1"
+    "electron-reload": "^1.2.2"
   },
   "build": {
     "appId": "your.id",
