@@ -14,8 +14,7 @@
     "test:renderer": "karma start",
     "test:m": "npm run test:main",
     "test:main": "electron-mocha ./test/unit/main/**/*.js",
-    "predev": "node ./pack.js",
-    "dev": "electron .",
+    "dev": "node ./pack.js",
     "pack": "webpack --config=./webpack.config.js",
     "build": "NODE_ENV=production webpack --config=./webpack.config.js && electron-builder"
   },

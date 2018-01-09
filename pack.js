@@ -1,26 +1,46 @@
 const { spawn } = require('child_process')
-const { join }  = require('path')
+const { resolve }  = require('path')
 
 /**
  * Note, this is probably not compatible with Windows machines
  */
 
-let child
+let webpack
+let electron
 const start = () => {
-  child = spawn(
+  startWebpack()
+  startElectron()
+}
+
+const startElectron = () => {
+  electron = spawn(
     'node',
-    [join(__dirname, 'node_modules', 'webpack', 'bin', 'webpack'), '--config=./webpack.config.js', '--watch'],
+    [resolve(__dirname, 'node_modules', '.bin', 'electron'), '.'],
     {
       cwd: process.cwd(),
       env: process.env,
       stdio: 'inherit'
     }
   )
-  child.on('close', () => setTimeout(start, 1000))
+  electron.on('close', () => setTimeout(startElectron, 1000))
+}
+
+const startWebpack = () => {
+  webpack = spawn(
+    'node',
+    [resolve(__dirname, 'node_modules', 'webpack', 'bin', 'webpack'), '--config=./webpack.config.js', '--watch'],
+    {
+      cwd: process.cwd(),
+      env: process.env,
+      stdio: 'inherit'
+    }
+  )
+  webpack.on('close', () => setTimeout(startWebpack, 1000))
 }
 
 process.on('close', () => {
-  child && child.kill('SIGINT')
+  webpack && webpack.kill('SIGINT')
+  electron && startElectron.kill('SIGINT')
 })
 
 // get the ball rolling ... 
